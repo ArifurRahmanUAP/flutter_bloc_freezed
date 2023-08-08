@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test_bloc/feature/home_page/presentation/bloc/movie_list_event.dart';
 
+import 'feature/home_page/presentation/bloc/movie_list_bloc.dart';
 import 'feature/home_page/presentation/home_page.dart';
+import 'injection.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +37,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: BlocProvider(
+        create: (context) => sl<MovieListBloc>()
+          ..add( const MovieListEvent.getPopularMovies()),
+        child:  HomePage(),
+      ),
     );
   }
 }
