@@ -16,6 +16,13 @@ class MovieListRepositoriesImpl implements MovieListRepository{
     );
   }
 
+  @override
+  Future<Either<Failures, PopularMovies>> getNowShowingMovies() async {
+    return await BodyCall<PopularMovies>()(
+          () => movieListRemoteDataSource.getNowShowingMovies(),
+    );
+  }
+
 }
 
 class BodyCall<Type> {

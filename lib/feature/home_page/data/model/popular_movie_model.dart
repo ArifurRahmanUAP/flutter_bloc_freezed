@@ -1,5 +1,6 @@
 import 'package:flutter_test_bloc/feature/home_page/domain/entities/popular_movie.dart';
 
+//ignore: must_be_immutable
 class PopularMovieModel extends PopularMovies {
   PopularMovieModel({
     this.page,
@@ -20,9 +21,13 @@ class PopularMovieModel extends PopularMovies {
     totalResults = json['total_results'];
   }
 
+  @override
   num? page;
+  @override
   List<Results>? results;
+  @override
   num? totalPages;
+  @override
   num? totalResults;
 
   factory PopularMovieModel.fromObject({required PopularMovies popularMovie}) =>
@@ -47,6 +52,7 @@ class PopularMovieModel extends PopularMovies {
   }
 }
 
+//ignore: must_be_immutable
 class ResultsModel extends Results {
   ResultsModel({
     this.adult,
@@ -82,19 +88,33 @@ class ResultsModel extends Results {
     voteCount = json['vote_count'];
   }
 
+  @override
   bool? adult;
+  @override
   String? backdropPath;
+  @override
   List<num>? genreIds;
+  @override
   num? id;
+  @override
   String? originalLanguage;
+  @override
   String? originalTitle;
+  @override
   String? overview;
+  @override
   num? popularity;
+  @override
   String? posterPath;
+  @override
   String? releaseDate;
+  @override
   String? title;
+  @override
   bool? video;
+  @override
   num? voteAverage;
+  @override
   num? voteCount;
 
   factory ResultsModel.fromObject({required Results results}) => ResultsModel(

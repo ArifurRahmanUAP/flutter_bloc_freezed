@@ -19,32 +19,38 @@ mixin _$MovieListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPopularMovies,
+    required TResult Function() getNowShingMovies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getPopularMovies,
+    TResult? Function()? getNowShingMovies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPopularMovies,
+    TResult Function()? getNowShingMovies,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetPopularMovies value) getPopularMovies,
+    required TResult Function(_GetNowShingMovies value) getNowShingMovies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetPopularMovies value)? getPopularMovies,
+    TResult? Function(_GetNowShingMovies value)? getNowShingMovies,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetPopularMovies value)? getPopularMovies,
+    TResult Function(_GetNowShingMovies value)? getNowShingMovies,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPopularMovies,
+    required TResult Function() getNowShingMovies,
   }) {
     return getPopularMovies();
   }
@@ -115,6 +122,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getPopularMovies,
+    TResult? Function()? getNowShingMovies,
   }) {
     return getPopularMovies?.call();
   }
@@ -123,6 +131,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPopularMovies,
+    TResult Function()? getNowShingMovies,
     required TResult orElse(),
   }) {
     if (getPopularMovies != null) {
@@ -135,6 +144,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetPopularMovies value) getPopularMovies,
+    required TResult Function(_GetNowShingMovies value) getNowShingMovies,
   }) {
     return getPopularMovies(this);
   }
@@ -143,6 +153,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetPopularMovies value)? getPopularMovies,
+    TResult? Function(_GetNowShingMovies value)? getNowShingMovies,
   }) {
     return getPopularMovies?.call(this);
   }
@@ -151,6 +162,7 @@ class _$_GetPopularMovies implements _GetPopularMovies {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetPopularMovies value)? getPopularMovies,
+    TResult Function(_GetNowShingMovies value)? getNowShingMovies,
     required TResult orElse(),
   }) {
     if (getPopularMovies != null) {
@@ -162,4 +174,106 @@ class _$_GetPopularMovies implements _GetPopularMovies {
 
 abstract class _GetPopularMovies implements MovieListEvent {
   const factory _GetPopularMovies() = _$_GetPopularMovies;
+}
+
+/// @nodoc
+abstract class _$$_GetNowShingMoviesCopyWith<$Res> {
+  factory _$$_GetNowShingMoviesCopyWith(_$_GetNowShingMovies value,
+          $Res Function(_$_GetNowShingMovies) then) =
+      __$$_GetNowShingMoviesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetNowShingMoviesCopyWithImpl<$Res>
+    extends _$MovieListEventCopyWithImpl<$Res, _$_GetNowShingMovies>
+    implements _$$_GetNowShingMoviesCopyWith<$Res> {
+  __$$_GetNowShingMoviesCopyWithImpl(
+      _$_GetNowShingMovies _value, $Res Function(_$_GetNowShingMovies) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GetNowShingMovies implements _GetNowShingMovies {
+  const _$_GetNowShingMovies();
+
+  @override
+  String toString() {
+    return 'MovieListEvent.getNowShingMovies()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetNowShingMovies);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getPopularMovies,
+    required TResult Function() getNowShingMovies,
+  }) {
+    return getNowShingMovies();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getPopularMovies,
+    TResult? Function()? getNowShingMovies,
+  }) {
+    return getNowShingMovies?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getPopularMovies,
+    TResult Function()? getNowShingMovies,
+    required TResult orElse(),
+  }) {
+    if (getNowShingMovies != null) {
+      return getNowShingMovies();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPopularMovies value) getPopularMovies,
+    required TResult Function(_GetNowShingMovies value) getNowShingMovies,
+  }) {
+    return getNowShingMovies(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetPopularMovies value)? getPopularMovies,
+    TResult? Function(_GetNowShingMovies value)? getNowShingMovies,
+  }) {
+    return getNowShingMovies?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPopularMovies value)? getPopularMovies,
+    TResult Function(_GetNowShingMovies value)? getNowShingMovies,
+    required TResult orElse(),
+  }) {
+    if (getNowShingMovies != null) {
+      return getNowShingMovies(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetNowShingMovies implements MovieListEvent {
+  const factory _GetNowShingMovies() = _$_GetNowShingMovies;
 }

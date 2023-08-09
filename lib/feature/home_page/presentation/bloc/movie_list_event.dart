@@ -8,4 +8,6 @@ class MovieListEvent with _$MovieListEvent {
 
   const factory MovieListEvent.getPopularMovies() = _GetPopularMovies;
 
+  const factory MovieListEvent.getNowShingMovies() = _GetNowShingMovies;
+
 }

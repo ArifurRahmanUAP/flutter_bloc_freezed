@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-
+//ignore: must_be_immutable
 class PopularMovies extends Equatable {
   PopularMovies({
     this.page,
@@ -34,7 +34,7 @@ class PopularMovies extends Equatable {
         totalResults,
       ];
 }
-
+//ignore: must_be_immutable
 class Results extends Equatable {
   Results({
     this.adult,

@@ -6,6 +6,7 @@ part 'movie_list_state.freezed.dart';
 class MovieListState with _$MovieListState {
   factory MovieListState({
     PopularMovies? popularMovies,
+    PopularMovies? nowShowingMovies,
     bool? isLoading,
     bool? isLoadingMore,
     bool? isFailure,
@@ -14,6 +15,7 @@ class MovieListState with _$MovieListState {
 
   factory MovieListState.initial() => MovieListState(
       popularMovies: null,
+      nowShowingMovies: null,
       isLoading: false,
       isFailure: false,
       isLoadingMore: false,
