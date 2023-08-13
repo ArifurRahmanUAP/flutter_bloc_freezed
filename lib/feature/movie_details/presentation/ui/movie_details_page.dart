@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_details_bloc.dart';
+import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
+import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_bookmark_bloc/movie_bookmark_bloc.dart';
+
+import '../../../../injection.dart';
+import '../bloc/movie_details_bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatelessWidget {
-  const MovieDetailsPage({super.key});
-
+  MovieDetailsPage({super.key});
+final DataBaseHelper dataBaseHelper = DataBaseHelper();
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
 
   @override
   Widget build(BuildContext context) {
+    dataBaseHelper.init();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Movie Details"),
@@ -19,7 +24,7 @@ class MovieDetailsPage extends StatelessWidget {
             if (state.movieDetails != null) {
               return Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * .3,
                     child: Image.network(
                         fit: BoxFit.fitWidth,
@@ -45,12 +50,37 @@ class MovieDetailsPage extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            Text(
-                              state.movieDetails!.originalTitle!,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  state.movieDetails!.originalTitle!,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                GestureDetector(onTap: () {
+                                  Map<String, dynamic> parm = {
+                                    "list": state.movieDetails!,
+                                    "data": dataBaseHelper
+                                  };
+                                  context.read<MovieBookmarkBloc>().add(
+                                      MovieBookmarkEvent.addToBookmarkEvent(
+                                          data: parm));
+                                }, child: BlocBuilder<MovieBookmarkBloc,
+                                    MovieBookmarkState>(
+                                  builder: (context, state) {
+                                    if (state.isBookmark!) {
+                                      return const Icon(Icons.bookmark);
+                                    } else {
+                                      return const Icon(
+                                          Icons.bookmark_border);
+                                    }
+                                  },
+                                ))
+                              ],
                             ),
                             const SizedBox(
                               height: 15,
@@ -68,8 +98,8 @@ class MovieDetailsPage extends StatelessWidget {
                                   TextSpan(
                                       text:
                                           "${state.movieDetails!.voteAverage!} / ${state.movieDetails!.voteCount}",
-                                      style:
-                                          const TextStyle(color: Colors.black)),
+                                      style: const TextStyle(
+                                          color: Colors.black)),
                                 ],
                               ),
                             ),
@@ -85,8 +115,8 @@ class MovieDetailsPage extends StatelessWidget {
                                   TextSpan(
                                       text:
                                           "${state.movieDetails!.popularity!}",
-                                      style:
-                                          const TextStyle(color: Colors.black)),
+                                      style: const TextStyle(
+                                          color: Colors.black)),
                                 ],
                               ),
                             ),

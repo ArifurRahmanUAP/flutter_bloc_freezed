@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_bloc/feature/home_page/presentation/bloc/movie_list_bloc.dart';
 import 'package:flutter_test_bloc/feature/home_page/presentation/bloc/movie_list_state.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_details_bloc.dart';
+import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_bookmark_bloc/movie_bookmark_bloc.dart';
 import 'package:flutter_test_bloc/feature/movie_details/presentation/ui/movie_details_page.dart';
 
 import '../../../../injection.dart';
+import '../../../movie_details/presentation/bloc/movie_details_bloc/movie_details_bloc.dart';
 
-//ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
-  var imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
+  final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +46,18 @@ class HomePage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              Image.network(
-                                  fit: BoxFit.fill,
-                                  height:
-                                      MediaQuery.of(context).size.height * .25,
-                                  imageBaseUrl + data!.posterPath!),
+                              SizedBox(
+                                height: 200,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: FadeInImage.assetNetwork(
+                                    placeholder: 'assets/gif/loading.gif',
+                                    image: imageBaseUrl + data!.posterPath!,
+                                    width: 140,
+                                    height: 160,
+                                  ),
+                                ),
+                              ),
                               Text(data.originalTitle!),
                             ],
                           ),
@@ -79,11 +86,20 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return BlocProvider(
-                                  create: (context) => sl<MovieDetailsBloc>()
-                                    ..add(MovieDetailsEvent.getMovieDetails(
-                                        movieId: data.id)),
-                                  child: const MovieDetailsPage(),
+                                return MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                        create: (context) =>
+                                            sl<MovieDetailsBloc>()
+                                              ..add(MovieDetailsEvent
+                                                  .getMovieDetails(
+                                                      movieId: data.id))),
+                                    BlocProvider(
+                                      create: (context) =>
+                                          sl<MovieBookmarkBloc>(),
+                                    )
+                                  ],
+                                  child: MovieDetailsPage(),
                                 );
                               }),
                             );

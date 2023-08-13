@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_test_bloc/core/usecases/usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_details/domain/entities/movie_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/useCase/movie_details_use_case.dart';
+import '../../../domain/useCase/movie_details_use_case.dart';
 
 part 'movie_details_bloc.freezed.dart';
 
@@ -20,7 +19,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
       await event.map(getMovieDetails: (value) async {
         emit(state.copyWith(isLoading: true));
         final response = await getMovieDetailsUseCase(event.movieId);
-        await response?.fold((failure) {
+        await response?.fold((failure) async {
           emit(state.copyWith(
               isLoading: false,
               isFailure: true,
