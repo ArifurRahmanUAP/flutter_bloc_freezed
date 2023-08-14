@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
 import 'package:flutter_test_bloc/core/errors/failures.dart';
 
 import '../model/movie_details_model.dart';
 
 abstract class MovieDetailsRemoteSource {
   Future<MovieDetailsModel> getMovieDetails({required movieId});
-
-  Future<int> addToBookMark({required data,});
 }
 
 class MovieDetailsRemoteSourceImpl implements MovieDetailsRemoteSource {
@@ -27,12 +24,5 @@ class MovieDetailsRemoteSourceImpl implements MovieDetailsRemoteSource {
       throw ServerFailure(
           message: '${response.statusCode}: ${response.statusCode}');
     }
-  }
-
-  @override
-  Future<int> addToBookMark({required data}) async {
-
-
-    return await data["data"].addToBookmark(data["list"]);
   }
 }

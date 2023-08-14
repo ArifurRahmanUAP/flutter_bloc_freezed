@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_bloc/feature/home_page/presentation/bloc/movie_list_bloc.dart';
-import 'package:flutter_test_bloc/feature/home_page/presentation/bloc/movie_list_state.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_bookmark_bloc/movie_bookmark_bloc.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/ui/movie_details_page.dart';
+import 'package:flutter_test_bloc/feature/movie_bookmarks/presentation/ui/bookmark_page.dart';
 
+import '../../../../core/database/data_base_helper.dart';
 import '../../../../injection.dart';
-import '../../../movie_details/presentation/bloc/movie_details_bloc/movie_details_bloc.dart';
+import '../../../movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
+import '../../../movie_details/presentation/bloc/movie_details_bloc.dart';
+import '../../../movie_details/presentation/ui/movie_details_page.dart';
+import '../bloc/movie_list_bloc.dart';
+import '../bloc/movie_list_state.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
+  final DataBaseHelper dataBaseHelper = DataBaseHelper();
 
   @override
   Widget build(BuildContext context) {
+    dataBaseHelper.init();
     return Scaffold(
-      appBar: AppBar(title: const Text("Movie Apps")),
+      appBar: AppBar(
+        title: const Text("Movie Apps"),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return BlocProvider(
+                    create: (context) => sl<MovieBookmarkBloc>()
+                      ..add(MovieBookmarkEvent.getBookmarkEvent(
+                          dataBaseHelper: dataBaseHelper)),
+                  child: const BookmarkPage(),);
+                }),
+              );
+            },
+            child: const Icon(Icons.book),
+          )
+        ],
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,15 +69,17 @@ class HomePage extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(
-                                height: 200,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: FadeInImage.assetNetwork(
-                                    placeholder: 'assets/gif/loading.gif',
-                                    image: imageBaseUrl + data!.posterPath!,
-                                    width: 140,
-                                    height: 160,
+                              Flexible(
+                                child: SizedBox(
+                                  height: 200,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder: 'assets/gif/loading.gif',
+                                      image: imageBaseUrl + data!.posterPath!,
+                                      width: 140,
+                                      height: 160,
+                                    ),
                                   ),
                                 ),
                               ),

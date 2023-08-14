@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_bookmark_bloc/movie_bookmark_bloc.dart';
-
-import '../../../../injection.dart';
-import '../bloc/movie_details_bloc/movie_details_bloc.dart';
+import '../../../movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
+import '../bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   MovieDetailsPage({super.key});

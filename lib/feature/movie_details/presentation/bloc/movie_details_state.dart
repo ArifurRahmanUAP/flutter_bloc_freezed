@@ -8,7 +8,7 @@ class MovieDetailsState with _$MovieDetailsState {
     bool? isLoadingMore,
     bool? isFailure,
     String? failureMessage,
-}) = _MovieDetailsState;
+  }) = _MovieDetailsState;
 
   factory MovieDetailsState.initial() => MovieDetailsState(
       movieDetails: null,
@@ -17,4 +17,3 @@ class MovieDetailsState with _$MovieDetailsState {
       isLoadingMore: false,
       failureMessage: null);
 }
-

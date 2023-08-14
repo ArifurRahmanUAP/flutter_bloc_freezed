@@ -1,13 +1,11 @@
 import 'dart:io' as io;
 import 'dart:io';
-
 import 'package:flutter/services.dart';
+import 'package:flutter_test_bloc/feature/movie_bookmarks/data/model/get_bookmarks_model.dart';
 import 'package:flutter_test_bloc/feature/movie_details/domain/entities/movie_details.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
-import '../../feature/movie_bookmarks/bookmark_page.dart';
 
 class DataBaseHelper {
   late Database _db;
@@ -33,11 +31,11 @@ class DataBaseHelper {
     _db = await openDatabase(dbPathName);
   }
 
-  Future<List<SaveDataModel>> getBookMarks() async {
+  Future<List<GetBookmarksModel>> getBookMarks() async {
     List<Map<String, dynamic>> maps = await _db.query('movielist');
 
     var data = List.generate(maps.length, (i) {
-      return SaveDataModel(
+      return GetBookmarksModel(
         movieId: maps[i]["movieId"],
         name: maps[i]["name"],
         duration: maps[i]["duration"],
@@ -58,16 +56,15 @@ class DataBaseHelper {
 
     String q = "INSERT INTO movielist (movieId, name, rating, genres, duration, image) SELECT '${movieDetails.id}','${movieDetails.originalTitle}' ,'${movieDetails.voteAverage}' ,"
         "'${geners.join(",")}' ,'${movieDetails.runtime}', '${movieDetails.posterPath}' WHERE '${movieDetails.id}' NOT IN (SELECT movieId FROM movielist)";
-    print("asd: ${await _db.rawQuery(q)}");
 
     return await _db.rawQuery(q);
   }
 
-  Future<void> updateNotification(SaveDataModel saveDataModel) async {
-    await _db.update(
-      'movielist', saveDataModel.toJson(),
-      // Ensure that the Dog has a matching id.
-      where: "movieId = ?", whereArgs: [saveDataModel.movieId],
-    );
-  }
+  // Future<void> updateNotification(SaveDataModel saveDataModel) async {
+  //   await _db.update(
+  //     'movielist', saveDataModel.toJson(),
+  //     // Ensure that the Dog has a matching id.
+  //     where: "movieId = ?", whereArgs: [saveDataModel.movieId],
+  //   );
+  // }
 }
