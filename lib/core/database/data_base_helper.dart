@@ -59,9 +59,7 @@ class DataBaseHelper {
         "INSERT INTO movielist (movieId, name, rating, genres, duration, image) SELECT '${movieDetails.id}','${movieDetails.originalTitle}' ,'${movieDetails.voteAverage}' ,"
         "'${geners.join(",")}' ,'${movieDetails.runtime}', '${movieDetails.posterPath}' WHERE '${movieDetails.id}' NOT IN (SELECT movieId FROM movielist)";
 
-    var asd = await _db.rawQuery(q);
-    print("www: ${asd}");
-    return asd;
+    return await _db.rawQuery(q);
   }
 
   // Future<void> updateNotification(SaveDataModel saveDataModel) async {

@@ -158,7 +158,7 @@ class MovieDetailsModel extends MovieDetails {
     return map;
   }
 }
-
+//ignore
 class SpokenLanguagesModel extends SpokenLanguages {
   SpokenLanguagesModel({
     this.englishName,
@@ -180,10 +180,14 @@ class SpokenLanguagesModel extends SpokenLanguages {
         name: spokenLanguages.name,
       );
 
+  @override
   String? englishName;
+  @override
   String? iso6391;
+  @override
   String? name;
 
+  @override
   SpokenLanguagesModel copyWith({
     String? englishName,
     String? iso6391,
@@ -222,9 +226,12 @@ class ProductionCountriesModel extends ProductionCountries {
         name: productionCountries.name,
       );
 
+  @override
   String? iso31661;
+  @override
   String? name;
 
+  @override
   ProductionCountriesModel copyWith({
     String? iso31661,
     String? name,
@@ -266,11 +273,16 @@ class ProductionCompaniesModel extends ProductionCompanies {
         originCountry: productionCompanies.originCountry,
       );
 
+  @override
   num? id;
+  @override
   String? logoPath;
+  @override
   String? name;
+  @override
   String? originCountry;
 
+  @override
   ProductionCompaniesModel copyWith({
     num? id,
     String? logoPath,
@@ -310,9 +322,12 @@ class GenresModel extends Genres {
         name: genres.name,
       );
 
+  @override
   num? id;
+  @override
   String? name;
 
+  @override
   GenresModel copyWith({
     num? id,
     String? name,

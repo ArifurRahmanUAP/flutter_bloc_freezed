@@ -20,11 +20,17 @@ class GetBookmarksModel extends GetBookmarks {
     image = json['image'];
   }
 
+  @override
   int? movieId;
+  @override
   String? name;
+  @override
   String? rating;
+  @override
   String? genres;
+  @override
   String? duration;
+  @override
   String? image;
 
   factory GetBookmarksModel.fromObject({required GetBookmarks getBookmarks}) =>

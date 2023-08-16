@@ -3,6 +3,7 @@ import 'package:flutter_test_bloc/core/usecases/usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/entities/get_bookmarks.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/delete_bookmark_usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/get_bookmarks_data_usecase.dart';
+import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_details_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/useCase/movie_add_to_bookmark_usecase.dart';
@@ -25,7 +26,6 @@ class MovieBookmarkBloc extends Bloc<MovieBookmarkEvent, MovieBookmarkState> {
       (event, emit) async {
         await event.map(
           addToBookmarkEvent: (value) async {
-            emit(state.copyWith(isLoading: true));
             final response =
                 await addMoviesToBookmarkUseCase(value.movieDetails);
             await response?.fold((failure) async {
@@ -62,7 +62,6 @@ class MovieBookmarkBloc extends Bloc<MovieBookmarkEvent, MovieBookmarkState> {
                   datas.add(i.copyWith());
                 }
               }
-
               emit(state.copyWith(isLoading: false, bookmarksData: datas));
             });
           },

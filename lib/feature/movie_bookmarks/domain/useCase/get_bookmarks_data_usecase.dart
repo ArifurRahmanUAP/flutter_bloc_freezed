@@ -1,7 +1,6 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
 import 'package:flutter_test_bloc/core/errors/failures.dart';
 import 'package:flutter_test_bloc/core/usecases/usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/entities/get_bookmarks.dart';
@@ -14,7 +13,7 @@ class GetBookmarksMovieUseCase implements UseCase<List<GetBookmarks>, NoParams>{
   GetBookmarksMovieUseCase({required this.repository});
 
   @override
-  Future<Either<Failures, List<GetBookmarks>>?> call(NoParams) {
+  Future<Either<Failures, List<GetBookmarks>>?> call(NoParams noParams) {
     return repository.getBookmarks();
   }
 

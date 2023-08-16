@@ -44,7 +44,6 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
                     failureMessage: failure.message));
               },
               (data) {
-                print("aaa: $data");
                 emit(state.copyWith(isLoading: false, isBookmark: data));
               },
             );

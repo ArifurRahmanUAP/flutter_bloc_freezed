@@ -68,46 +68,38 @@ class MovieDetailsPage extends StatelessWidget {
                                             onTap: () {
                                               context
                                                   .read<MovieDetailsBloc>()
-                                                  .add(MovieDetailsEvent
-                                                      .isMovieBookmark(
-                                                          movieId: state
-                                                              .movieDetails!
-                                                              .id));
+                                                  .add(
+                                                    MovieDetailsEvent
+                                                        .isMovieBookmark(
+                                                            movieId: state
+                                                                .movieDetails!
+                                                                .id),
+                                                  );
                                             },
                                             child: GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   context
                                                       .read<MovieBookmarkBloc>()
-                                                      .add(MovieBookmarkEvent
-                                                      .deleteBookmarkEvent(
-                                                      movieId: state
-                                                          .movieDetails!.id));
-
-                                                  context
-                                                      .read<MovieDetailsBloc>()
-                                                      .add(MovieDetailsEvent
-                                                      .isMovieBookmark(
-                                                      movieId: state
-                                                          .movieDetails!
-                                                          .id));
+                                                      .add(
+                                                        MovieBookmarkEvent
+                                                            .deleteBookmarkEvent(
+                                                                movieId: state
+                                                                    .movieDetails!
+                                                                    .id),
+                                                      );
                                                 },
-                                                child: const Icon(Icons.bookmark)))
+                                                child:
+                                                    const Icon(Icons.bookmark)))
                                         : GestureDetector(
                                             onTap: () {
                                               context
                                                   .read<MovieBookmarkBloc>()
-                                                  .add(MovieBookmarkEvent
-                                                      .addToBookmarkEvent(
-                                                          movieDetails: state
-                                                              .movieDetails));
-
-                                              context
-                                                  .read<MovieDetailsBloc>()
-                                                  .add(MovieDetailsEvent
-                                                      .isMovieBookmark(
-                                                          movieId: state
-                                                              .movieDetails!
-                                                              .id));
+                                                  .add(
+                                                    MovieBookmarkEvent
+                                                        .addToBookmarkEvent(
+                                                            movieDetails: state
+                                                                .movieDetails),
+                                                  );
                                             },
                                             child: const Icon(
                                                 Icons.bookmark_border_outlined),
