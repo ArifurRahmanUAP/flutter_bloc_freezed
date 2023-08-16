@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
 import 'package:flutter_test_bloc/core/errors/failures.dart';
+import 'package:flutter_test_bloc/injection.dart';
 
 import '../model/movie_details_model.dart';
 
 abstract class MovieDetailsRemoteSource {
   Future<MovieDetailsModel> getMovieDetails({required movieId});
+  Future<bool> isBookmark({required int movieId});
 }
 
 class MovieDetailsRemoteSourceImpl implements MovieDetailsRemoteSource {
-  Dio dio = Dio();
+  var dio = locator<Dio>();
+  var databaseHelper = locator<DataBaseHelper>();
 
-  MovieDetailsRemoteSourceImpl(this.dio);
+  MovieDetailsRemoteSourceImpl(this.dio, this.databaseHelper);
 
   @override
   Future<MovieDetailsModel> getMovieDetails({required movieId}) async {
@@ -25,4 +29,10 @@ class MovieDetailsRemoteSourceImpl implements MovieDetailsRemoteSource {
           message: '${response.statusCode}: ${response.statusCode}');
     }
   }
+
+  @override
+  Future<bool> isBookmark({required int movieId}) async {
+    return await databaseHelper.isBookmark(movieId: movieId);
+  }
+
 }

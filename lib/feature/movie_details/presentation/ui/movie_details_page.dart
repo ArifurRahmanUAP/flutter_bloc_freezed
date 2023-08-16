@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_bloc/core/database/data_base_helper.dart';
+import 'package:flutter_test_bloc/injection.dart';
+
 import '../../../movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
 import '../bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   MovieDetailsPage({super.key});
-final DataBaseHelper dataBaseHelper = DataBaseHelper();
+
+  final DataBaseHelper dataBaseHelper = locator<DataBaseHelper>();
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
 
   @override
@@ -49,8 +52,7 @@ final DataBaseHelper dataBaseHelper = DataBaseHelper();
                               height: 20,
                             ),
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   state.movieDetails!.originalTitle!,
@@ -59,25 +61,57 @@ final DataBaseHelper dataBaseHelper = DataBaseHelper();
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                GestureDetector(onTap: () {
-                                  Map<String, dynamic> parm = {
-                                    "list": state.movieDetails!,
-                                    "data": dataBaseHelper
-                                  };
-                                  context.read<MovieBookmarkBloc>().add(
-                                      MovieBookmarkEvent.addToBookmarkEvent(
-                                          data: parm));
-                                }, child: BlocBuilder<MovieBookmarkBloc,
-                                    MovieBookmarkState>(
-                                  builder: (context, state) {
-                                    if (state.isBookmark!) {
-                                      return const Icon(Icons.bookmark);
-                                    } else {
-                                      return const Icon(
-                                          Icons.bookmark_border);
-                                    }
-                                  },
-                                ))
+                                GestureDetector(
+                                    onTap: () {},
+                                    child: state.isBookmark == true
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              context
+                                                  .read<MovieDetailsBloc>()
+                                                  .add(MovieDetailsEvent
+                                                      .isMovieBookmark(
+                                                          movieId: state
+                                                              .movieDetails!
+                                                              .id));
+                                            },
+                                            child: GestureDetector(
+                                                onTap: (){
+                                                  context
+                                                      .read<MovieBookmarkBloc>()
+                                                      .add(MovieBookmarkEvent
+                                                      .deleteBookmarkEvent(
+                                                      movieId: state
+                                                          .movieDetails!.id));
+
+                                                  context
+                                                      .read<MovieDetailsBloc>()
+                                                      .add(MovieDetailsEvent
+                                                      .isMovieBookmark(
+                                                      movieId: state
+                                                          .movieDetails!
+                                                          .id));
+                                                },
+                                                child: const Icon(Icons.bookmark)))
+                                        : GestureDetector(
+                                            onTap: () {
+                                              context
+                                                  .read<MovieBookmarkBloc>()
+                                                  .add(MovieBookmarkEvent
+                                                      .addToBookmarkEvent(
+                                                          movieDetails: state
+                                                              .movieDetails));
+
+                                              context
+                                                  .read<MovieDetailsBloc>()
+                                                  .add(MovieDetailsEvent
+                                                      .isMovieBookmark(
+                                                          movieId: state
+                                                              .movieDetails!
+                                                              .id));
+                                            },
+                                            child: const Icon(
+                                                Icons.bookmark_border_outlined),
+                                          ))
                               ],
                             ),
                             const SizedBox(
@@ -96,8 +130,8 @@ final DataBaseHelper dataBaseHelper = DataBaseHelper();
                                   TextSpan(
                                       text:
                                           "${state.movieDetails!.voteAverage!} / ${state.movieDetails!.voteCount}",
-                                      style: const TextStyle(
-                                          color: Colors.black)),
+                                      style:
+                                          const TextStyle(color: Colors.black)),
                                 ],
                               ),
                             ),
@@ -113,8 +147,8 @@ final DataBaseHelper dataBaseHelper = DataBaseHelper();
                                   TextSpan(
                                       text:
                                           "${state.movieDetails!.popularity!}",
-                                      style: const TextStyle(
-                                          color: Colors.black)),
+                                      style:
+                                          const TextStyle(color: Colors.black)),
                                 ],
                               ),
                             ),

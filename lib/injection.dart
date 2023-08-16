@@ -6,79 +6,88 @@ import 'package:flutter_test_bloc/feature/home_page/domain/repositories/movie_re
 import 'package:flutter_test_bloc/feature/home_page/domain/usecase/get_now_showing_movie_usecase.dart';
 import 'package:flutter_test_bloc/feature/home_page/domain/usecase/get_popular_movie_usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/data/source/data_source.dart';
-import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/get_bookmarks_data.dart';
+import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/get_bookmarks_data_usecase.dart';
+import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/movie_add_to_bookmark_usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_details/data/repository/movie_details_repositories_impl.dart';
-import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/movie_add_to_bookmark.dart';
+import 'package:flutter_test_bloc/feature/movie_details/domain/useCase/is_bookmark.dart';
 import 'package:flutter_test_bloc/feature/movie_details/domain/useCase/movie_details_use_case.dart';
 import 'package:get_it/get_it.dart';
+
 import 'feature/home_page/presentation/bloc/movie_list_bloc.dart';
-import 'feature/movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
 import 'feature/movie_bookmarks/data/repositories/movie_bookmark_repository_impl.dart';
-import 'feature/movie_details/data/source/data_source.dart';
 import 'feature/movie_bookmarks/domain/repositories/movie_book_mark_repository.dart';
+import 'feature/movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
+import 'feature/movie_details/data/source/data_source.dart';
 import 'feature/movie_details/domain/repositories/movie_details_repositories.dart';
+import 'feature/movie_bookmarks/domain/useCase/delete_bookmark_usecase.dart';
 import 'feature/movie_details/presentation/bloc/movie_details_bloc.dart';
 
-final sl = GetIt.instance;
-final dio = Dio();
+final locator = GetIt.instance;
 final dataBaseHelper = DataBaseHelper();
 
 void init() {
   /// Bloc
-  sl.registerFactory(
-    () => MovieListBloc(sl(), sl()),
+  locator.registerFactory(
+    () => MovieListBloc(locator(), locator()),
   );
-  sl.registerFactory(
-    () => MovieDetailsBloc(sl()),
+  locator.registerFactory(
+    () => MovieDetailsBloc(locator(), locator()),
   );
-  sl.registerFactory(
-        () => MovieBookmarkBloc(sl(), sl()),
+  locator.registerFactory(
+    () => MovieBookmarkBloc(locator(), locator(), locator()),
   );
 
   /// Usecases
-  sl.registerLazySingleton(
-    () => GetPopularMoviesUseCase(repository: sl()),
+  locator.registerLazySingleton(
+    () => GetPopularMoviesUseCase(repository: locator()),
   );
 
-  sl.registerLazySingleton(
-    () => GetNowShowingMoviesUseCase(repository: sl()),
+  locator.registerLazySingleton(
+    () => GetNowShowingMoviesUseCase(repository: locator()),
   );
-  sl.registerLazySingleton(
-        () => GetMovieDetailsUseCase(repository: sl()),
+  locator.registerLazySingleton(
+    () => GetMovieDetailsUseCase(repository: locator()),
   );
-  sl.registerLazySingleton(
-        () => AddMoviesToBookmarkUseCase(repository: sl()),
+  locator.registerLazySingleton(
+    () => IsBookmarkUseCase(repository: locator()),
+  );
+  locator.registerLazySingleton(
+    () => DeleteBookmarkUseCase(repository: locator()),
+  );
+  locator.registerLazySingleton(
+    () => AddMoviesToBookmarkUseCase(repository: locator()),
   );
 
-  sl.registerLazySingleton(
-        () => GetBookmarksMovieUseCase(repository: sl()),
+  locator.registerLazySingleton(
+    () => GetBookmarksMovieUseCase(repository: locator()),
   );
 
   /// Repositories
-  sl.registerLazySingleton<MovieListRepository>(
-    () => MovieListRepositoriesImpl(movieListRemoteDataSource: sl()),
+  locator.registerLazySingleton<MovieListRepository>(
+    () => MovieListRepositoriesImpl(movieListRemoteDataSource: locator()),
   );
-  sl.registerLazySingleton<MovieDetailsRepository>(
-        () => MovieDetailsRepositoriesImpl(movieDetailsRemoteSource: sl()),
+  locator.registerLazySingleton<MovieDetailsRepository>(
+    () => MovieDetailsRepositoriesImpl(movieDetailsRemoteSource: locator()),
   );
-  sl.registerLazySingleton<MovieBookMarkRepository>(
-        () => MovieBookMarkRepositoryImpl(getBookmarkRemoteSource: sl()),
+  locator.registerLazySingleton<MovieBookMarkRepository>(
+    () => MovieBookMarkRepositoryImpl(bookmarkRemoteSource: locator()),
   );
 
   /// Datasources
-  sl.registerLazySingleton<MovieListRemoteSource>(
-    () => MovieListRemoteDataSourceImpl(sl()),
+  locator.registerLazySingleton<MovieListRemoteSource>(
+    () => MovieListRemoteDataSourceImpl(locator()),
   );
-  sl.registerLazySingleton<MovieDetailsRemoteSource>(
-    () => MovieDetailsRemoteSourceImpl(sl()),
+  locator.registerLazySingleton<MovieDetailsRemoteSource>(
+    () => MovieDetailsRemoteSourceImpl(locator(), locator()),
   );
 
-  sl.registerLazySingleton<BookmarkRemoteSource>(
-        () => GetBookmarkRemoteSourceImpl(sl()),
+  locator.registerLazySingleton<BookmarkRemoteSource>(
+    () => GetBookmarkRemoteSourceImpl(locator(), locator()),
   );
 
   /// Core
   /// Externals
-  sl.registerLazySingleton(() => dio);
-  sl.registerLazySingleton(() => dataBaseHelper);
+  locator.registerLazySingleton(() => Dio());
+  locator.registerLazySingleton(() => dataBaseHelper);
+  locator.registerLazySingleton(() => dataBaseHelper.init());
 }

@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
-  final DataBaseHelper dataBaseHelper = DataBaseHelper();
+  final DataBaseHelper dataBaseHelper = locator<DataBaseHelper>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,11 @@ class HomePage extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) {
                   return BlocProvider(
-                    create: (context) => sl<MovieBookmarkBloc>()
+                    create: (context) => locator<MovieBookmarkBloc>()
                       ..add(MovieBookmarkEvent.getBookmarkEvent(
                           dataBaseHelper: dataBaseHelper)),
-                  child: const BookmarkPage(),);
+                    child: const BookmarkPage(),
+                  );
                 }),
               );
             },
@@ -115,13 +116,13 @@ class HomePage extends StatelessWidget {
                                   providers: [
                                     BlocProvider(
                                         create: (context) =>
-                                            sl<MovieDetailsBloc>()
+                                            locator<MovieDetailsBloc>()
                                               ..add(MovieDetailsEvent
                                                   .getMovieDetails(
                                                       movieId: data.id))),
                                     BlocProvider(
                                       create: (context) =>
-                                          sl<MovieBookmarkBloc>(),
+                                          locator<MovieBookmarkBloc>(),
                                     )
                                   ],
                                   child: MovieDetailsPage(),

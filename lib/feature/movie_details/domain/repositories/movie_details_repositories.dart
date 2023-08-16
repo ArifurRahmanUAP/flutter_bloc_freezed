@@ -5,4 +5,6 @@ import 'package:flutter_test_bloc/feature/movie_details/domain/entities/movie_de
 abstract class MovieDetailsRepository{
 
   Future<Either<Failures, MovieDetails>> getMovieDetails({required movieId});
+  Future<Either<Failures, bool>> isBookmark({required int movieId});
+
 }

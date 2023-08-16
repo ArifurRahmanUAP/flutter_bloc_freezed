@@ -4,6 +4,7 @@ part of 'movie_details_bloc.dart';
 class MovieDetailsState with _$MovieDetailsState {
   factory MovieDetailsState({
     MovieDetails? movieDetails,
+    bool? isBookmark,
     bool? isLoading,
     bool? isLoadingMore,
     bool? isFailure,
@@ -14,6 +15,7 @@ class MovieDetailsState with _$MovieDetailsState {
       movieDetails: null,
       isLoading: false,
       isFailure: false,
+      isBookmark: false,
       isLoadingMore: false,
       failureMessage: null);
 }

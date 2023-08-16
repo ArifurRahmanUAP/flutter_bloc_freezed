@@ -8,14 +8,14 @@ import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/entities/get_bo
 
 import '../repositories/movie_book_mark_repository.dart';
 
-class GetBookmarksMovieUseCase extends UseCase<List<GetBookmarks>, DataBaseHelper>{
+class GetBookmarksMovieUseCase implements UseCase<List<GetBookmarks>, NoParams>{
 
   final MovieBookMarkRepository repository;
   GetBookmarksMovieUseCase({required this.repository});
 
   @override
-  Future<Either<Failures, List<GetBookmarks>>?> call(DataBaseHelper databaseHelper) {
-    return repository.getBookmarks(dataBaseHelper: databaseHelper);
+  Future<Either<Failures, List<GetBookmarks>>?> call(NoParams) {
+    return repository.getBookmarks();
   }
 
 }

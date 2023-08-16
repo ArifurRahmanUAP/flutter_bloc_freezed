@@ -18,4 +18,11 @@ class MovieDetailsRepositoriesImpl extends MovieDetailsRepository {
       () => movieDetailsRemoteSource.getMovieDetails(movieId: movieId),
     );
   }
+
+  @override
+  Future<Either<Failures, bool>> isBookmark({required int movieId}) async {
+    return await BodyCall<bool>()(
+          () => movieDetailsRemoteSource.isBookmark(movieId: movieId),
+    );
+  }
 }

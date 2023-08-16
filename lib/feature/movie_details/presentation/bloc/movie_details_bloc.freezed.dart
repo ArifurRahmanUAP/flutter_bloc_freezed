@@ -20,32 +20,38 @@ mixin _$MovieDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieId) getMovieDetails,
+    required TResult Function(dynamic movieId) isMovieBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieId)? getMovieDetails,
+    TResult? Function(dynamic movieId)? isMovieBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieId)? getMovieDetails,
+    TResult Function(dynamic movieId)? isMovieBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetMovieDetails value) getMovieDetails,
+    required TResult Function(_IsMovieBookmark value) isMovieBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetMovieDetails value)? getMovieDetails,
+    TResult? Function(_IsMovieBookmark value)? isMovieBookmark,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetMovieDetails value)? getMovieDetails,
+    TResult Function(_IsMovieBookmark value)? isMovieBookmark,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +159,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieId) getMovieDetails,
+    required TResult Function(dynamic movieId) isMovieBookmark,
   }) {
     return getMovieDetails(movieId);
   }
@@ -161,6 +168,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieId)? getMovieDetails,
+    TResult? Function(dynamic movieId)? isMovieBookmark,
   }) {
     return getMovieDetails?.call(movieId);
   }
@@ -169,6 +177,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieId)? getMovieDetails,
+    TResult Function(dynamic movieId)? isMovieBookmark,
     required TResult orElse(),
   }) {
     if (getMovieDetails != null) {
@@ -181,6 +190,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetMovieDetails value) getMovieDetails,
+    required TResult Function(_IsMovieBookmark value) isMovieBookmark,
   }) {
     return getMovieDetails(this);
   }
@@ -189,6 +199,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetMovieDetails value)? getMovieDetails,
+    TResult? Function(_IsMovieBookmark value)? isMovieBookmark,
   }) {
     return getMovieDetails?.call(this);
   }
@@ -197,6 +208,7 @@ class _$_GetMovieDetails implements _GetMovieDetails {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetMovieDetails value)? getMovieDetails,
+    TResult Function(_IsMovieBookmark value)? isMovieBookmark,
     required TResult orElse(),
   }) {
     if (getMovieDetails != null) {
@@ -218,8 +230,144 @@ abstract class _GetMovieDetails implements MovieDetailsEvent {
 }
 
 /// @nodoc
+abstract class _$$_IsMovieBookmarkCopyWith<$Res>
+    implements $MovieDetailsEventCopyWith<$Res> {
+  factory _$$_IsMovieBookmarkCopyWith(
+          _$_IsMovieBookmark value, $Res Function(_$_IsMovieBookmark) then) =
+      __$$_IsMovieBookmarkCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({dynamic movieId});
+}
+
+/// @nodoc
+class __$$_IsMovieBookmarkCopyWithImpl<$Res>
+    extends _$MovieDetailsEventCopyWithImpl<$Res, _$_IsMovieBookmark>
+    implements _$$_IsMovieBookmarkCopyWith<$Res> {
+  __$$_IsMovieBookmarkCopyWithImpl(
+      _$_IsMovieBookmark _value, $Res Function(_$_IsMovieBookmark) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? movieId = freezed,
+  }) {
+    return _then(_$_IsMovieBookmark(
+      movieId: freezed == movieId ? _value.movieId! : movieId,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_IsMovieBookmark implements _IsMovieBookmark {
+  _$_IsMovieBookmark({this.movieId});
+
+  @override
+  final dynamic movieId;
+
+  @override
+  String toString() {
+    return 'MovieDetailsEvent.isMovieBookmark(movieId: $movieId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IsMovieBookmark &&
+            const DeepCollectionEquality().equals(other.movieId, movieId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(movieId));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_IsMovieBookmarkCopyWith<_$_IsMovieBookmark> get copyWith =>
+      __$$_IsMovieBookmarkCopyWithImpl<_$_IsMovieBookmark>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(dynamic movieId) getMovieDetails,
+    required TResult Function(dynamic movieId) isMovieBookmark,
+  }) {
+    return isMovieBookmark(movieId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(dynamic movieId)? getMovieDetails,
+    TResult? Function(dynamic movieId)? isMovieBookmark,
+  }) {
+    return isMovieBookmark?.call(movieId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(dynamic movieId)? getMovieDetails,
+    TResult Function(dynamic movieId)? isMovieBookmark,
+    required TResult orElse(),
+  }) {
+    if (isMovieBookmark != null) {
+      return isMovieBookmark(movieId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetMovieDetails value) getMovieDetails,
+    required TResult Function(_IsMovieBookmark value) isMovieBookmark,
+  }) {
+    return isMovieBookmark(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetMovieDetails value)? getMovieDetails,
+    TResult? Function(_IsMovieBookmark value)? isMovieBookmark,
+  }) {
+    return isMovieBookmark?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetMovieDetails value)? getMovieDetails,
+    TResult Function(_IsMovieBookmark value)? isMovieBookmark,
+    required TResult orElse(),
+  }) {
+    if (isMovieBookmark != null) {
+      return isMovieBookmark(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IsMovieBookmark implements MovieDetailsEvent {
+  factory _IsMovieBookmark({final dynamic movieId}) = _$_IsMovieBookmark;
+
+  @override
+  dynamic get movieId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_IsMovieBookmarkCopyWith<_$_IsMovieBookmark> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$MovieDetailsState {
   MovieDetails? get movieDetails => throw _privateConstructorUsedError;
+  bool? get isBookmark => throw _privateConstructorUsedError;
   bool? get isLoading => throw _privateConstructorUsedError;
   bool? get isLoadingMore => throw _privateConstructorUsedError;
   bool? get isFailure => throw _privateConstructorUsedError;
@@ -238,6 +386,7 @@ abstract class $MovieDetailsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {MovieDetails? movieDetails,
+      bool? isBookmark,
       bool? isLoading,
       bool? isLoadingMore,
       bool? isFailure,
@@ -258,6 +407,7 @@ class _$MovieDetailsStateCopyWithImpl<$Res, $Val extends MovieDetailsState>
   @override
   $Res call({
     Object? movieDetails = freezed,
+    Object? isBookmark = freezed,
     Object? isLoading = freezed,
     Object? isLoadingMore = freezed,
     Object? isFailure = freezed,
@@ -268,6 +418,10 @@ class _$MovieDetailsStateCopyWithImpl<$Res, $Val extends MovieDetailsState>
           ? _value.movieDetails
           : movieDetails // ignore: cast_nullable_to_non_nullable
               as MovieDetails?,
+      isBookmark: freezed == isBookmark
+          ? _value.isBookmark
+          : isBookmark // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isLoading: freezed == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -298,6 +452,7 @@ abstract class _$$_MovieDetailsStateCopyWith<$Res>
   @useResult
   $Res call(
       {MovieDetails? movieDetails,
+      bool? isBookmark,
       bool? isLoading,
       bool? isLoadingMore,
       bool? isFailure,
@@ -316,6 +471,7 @@ class __$$_MovieDetailsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? movieDetails = freezed,
+    Object? isBookmark = freezed,
     Object? isLoading = freezed,
     Object? isLoadingMore = freezed,
     Object? isFailure = freezed,
@@ -326,6 +482,10 @@ class __$$_MovieDetailsStateCopyWithImpl<$Res>
           ? _value.movieDetails
           : movieDetails // ignore: cast_nullable_to_non_nullable
               as MovieDetails?,
+      isBookmark: freezed == isBookmark
+          ? _value.isBookmark
+          : isBookmark // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isLoading: freezed == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -351,6 +511,7 @@ class __$$_MovieDetailsStateCopyWithImpl<$Res>
 class _$_MovieDetailsState implements _MovieDetailsState {
   _$_MovieDetailsState(
       {this.movieDetails,
+      this.isBookmark,
       this.isLoading,
       this.isLoadingMore,
       this.isFailure,
@@ -358,6 +519,8 @@ class _$_MovieDetailsState implements _MovieDetailsState {
 
   @override
   final MovieDetails? movieDetails;
+  @override
+  final bool? isBookmark;
   @override
   final bool? isLoading;
   @override
@@ -369,7 +532,7 @@ class _$_MovieDetailsState implements _MovieDetailsState {
 
   @override
   String toString() {
-    return 'MovieDetailsState(movieDetails: $movieDetails, isLoading: $isLoading, isLoadingMore: $isLoadingMore, isFailure: $isFailure, failureMessage: $failureMessage)';
+    return 'MovieDetailsState(movieDetails: $movieDetails, isBookmark: $isBookmark, isLoading: $isLoading, isLoadingMore: $isLoadingMore, isFailure: $isFailure, failureMessage: $failureMessage)';
   }
 
   @override
@@ -379,6 +542,8 @@ class _$_MovieDetailsState implements _MovieDetailsState {
             other is _$_MovieDetailsState &&
             (identical(other.movieDetails, movieDetails) ||
                 other.movieDetails == movieDetails) &&
+            (identical(other.isBookmark, isBookmark) ||
+                other.isBookmark == isBookmark) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isLoadingMore, isLoadingMore) ||
@@ -390,8 +555,8 @@ class _$_MovieDetailsState implements _MovieDetailsState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, movieDetails, isLoading,
-      isLoadingMore, isFailure, failureMessage);
+  int get hashCode => Object.hash(runtimeType, movieDetails, isBookmark,
+      isLoading, isLoadingMore, isFailure, failureMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -404,6 +569,7 @@ class _$_MovieDetailsState implements _MovieDetailsState {
 abstract class _MovieDetailsState implements MovieDetailsState {
   factory _MovieDetailsState(
       {final MovieDetails? movieDetails,
+      final bool? isBookmark,
       final bool? isLoading,
       final bool? isLoadingMore,
       final bool? isFailure,
@@ -411,6 +577,8 @@ abstract class _MovieDetailsState implements MovieDetailsState {
 
   @override
   MovieDetails? get movieDetails;
+  @override
+  bool? get isBookmark;
   @override
   bool? get isLoading;
   @override

@@ -4,4 +4,7 @@ part of 'movie_details_bloc.dart';
 class MovieDetailsEvent with _$MovieDetailsEvent {
   factory MovieDetailsEvent.getMovieDetails({movieId})
   = _GetMovieDetails;
+
+  factory MovieDetailsEvent.isMovieBookmark({movieId})
+  = _IsMovieBookmark;
 }
