@@ -81,9 +81,9 @@ class BookmarkPage extends StatelessWidget {
                                                           .bookmarksData![index]
                                                           .movieId));
 
-                                          context.read<MovieBookmarkBloc>().add(
-                                              const MovieBookmarkEvent
-                                                  .getBookmarkEvent());
+                                          // context.read<MovieBookmarkBloc>().add(
+                                          //     const MovieBookmarkEvent
+                                          //         .getBookmarkEvent());
                                         },
                                         child: const Icon(Icons.delete))
                                   ],
