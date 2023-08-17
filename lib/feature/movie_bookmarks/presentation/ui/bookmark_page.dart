@@ -6,13 +6,27 @@ import '../../../../injection.dart';
 import '../../../movie_details/presentation/bloc/movie_details_bloc.dart';
 import '../../../movie_details/presentation/ui/movie_details_page.dart';
 
-class BookmarkPage extends StatelessWidget {
+class BookmarkPage extends StatefulWidget {
   const BookmarkPage({super.key});
 
+  @override
+  State<BookmarkPage> createState() => _BookmarkPageState();
+}
+
+class _BookmarkPageState extends State<BookmarkPage> {
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
+
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+      const Duration(seconds: 2),
+          () {
+        context.read<MovieBookmarkBloc>().add(
+            const MovieBookmarkEvent.getBookmarkEvent());
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bookmark List"),
@@ -24,7 +38,8 @@ class BookmarkPage extends StatelessWidget {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state.bookmarksData != null) {
+            }
+            else if (state.bookmarksData!.isNotEmpty) {
               return ListView.builder(
                 itemCount: state.bookmarksData!.length,
                 itemBuilder: (context, index) {
@@ -46,7 +61,7 @@ class BookmarkPage extends StatelessWidget {
                                     locator<MovieBookmarkBloc>(),
                               )
                             ],
-                            child: MovieDetailsPage(),
+                            child: const MovieDetailsPage(),
                           );
                         }),
                       );
@@ -67,7 +82,7 @@ class BookmarkPage extends StatelessWidget {
                               children: [
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Flexible(
                                         child: Text(
@@ -77,13 +92,9 @@ class BookmarkPage extends StatelessWidget {
                                           context.read<MovieBookmarkBloc>().add(
                                               MovieBookmarkEvent
                                                   .deleteBookmarkEvent(
-                                                      movieId: state
-                                                          .bookmarksData![index]
-                                                          .movieId));
-
-                                          // context.read<MovieBookmarkBloc>().add(
-                                          //     const MovieBookmarkEvent
-                                          //         .getBookmarkEvent());
+                                                  movieId: state
+                                                      .bookmarksData![index]
+                                                      .movieId));
                                         },
                                         child: const Icon(Icons.delete))
                                   ],
@@ -97,7 +108,10 @@ class BookmarkPage extends StatelessWidget {
                 },
               );
             }
-            return const Text("");
+            else if(state.bookmarksData!.isEmpty){
+              return Center(child: Image.asset("assets/image/nodata.png"));
+            }
+            return  Container();
           },
         ),
       ),

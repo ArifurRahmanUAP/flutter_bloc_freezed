@@ -1,6 +1,5 @@
-import 'package:equatable/equatable.dart';
 
-class MovieDetails extends Equatable {
+class MovieDetails {
   MovieDetails({
     this.adult,
     this.backdropPath,
@@ -109,38 +108,9 @@ class MovieDetails extends Equatable {
         voteAverage: voteAverage ?? this.voteAverage,
         voteCount: voteCount ?? this.voteCount,
       );
-
-  @override
-  List<Object?> get props => [
-        adult,
-        backdropPath,
-        belongsToCollection,
-        budget,
-        genres,
-        homepage,
-        id,
-        imdbId,
-        originalLanguage,
-        originalTitle,
-        overview,
-        popularity,
-        posterPath,
-        productionCompanies,
-        productionCountries,
-        releaseDate,
-        revenue,
-        runtime,
-        spokenLanguages,
-        status,
-        tagline,
-        title,
-        video,
-        voteAverage,
-        voteCount,
-      ];
 }
 
-class SpokenLanguages extends Equatable {
+class SpokenLanguages {
   SpokenLanguages({
     this.englishName,
     this.iso6391,
@@ -161,17 +131,9 @@ class SpokenLanguages extends Equatable {
         iso6391: iso6391 ?? this.iso6391,
         name: name ?? this.name,
       );
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        englishName,
-        iso6391,
-        name,
-      ];
 }
 
-class ProductionCountries extends Equatable {
+class ProductionCountries {
   ProductionCountries({
     this.iso31661,
     this.name,
@@ -188,16 +150,9 @@ class ProductionCountries extends Equatable {
         iso31661: iso31661 ?? this.iso31661,
         name: name ?? this.name,
       );
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        iso31661,
-        name,
-      ];
 }
 
-class ProductionCompanies extends Equatable {
+class ProductionCompanies {
   ProductionCompanies({
     this.id,
     this.logoPath,
@@ -222,18 +177,9 @@ class ProductionCompanies extends Equatable {
         name: name ?? this.name,
         originCountry: originCountry ?? this.originCountry,
       );
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        id,
-        logoPath,
-        name,
-        originCountry,
-      ];
 }
 
-class Genres extends Equatable {
+class Genres {
   Genres({
     this.id,
     this.name,
@@ -250,11 +196,4 @@ class Genres extends Equatable {
         id: id ?? this.id,
         name: name ?? this.name,
       );
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        id,
-        name,
-      ];
 }

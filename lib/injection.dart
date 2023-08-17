@@ -16,10 +16,10 @@ import 'package:get_it/get_it.dart';
 import 'feature/home_page/presentation/bloc/movie_list_bloc.dart';
 import 'feature/movie_bookmarks/data/repositories/movie_bookmark_repository_impl.dart';
 import 'feature/movie_bookmarks/domain/repositories/movie_book_mark_repository.dart';
+import 'feature/movie_bookmarks/domain/useCase/delete_bookmark_usecase.dart';
 import 'feature/movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
 import 'feature/movie_details/data/source/data_source.dart';
 import 'feature/movie_details/domain/repositories/movie_details_repositories.dart';
-import 'feature/movie_bookmarks/domain/useCase/delete_bookmark_usecase.dart';
 import 'feature/movie_details/presentation/bloc/movie_details_bloc.dart';
 
 final locator = GetIt.instance;

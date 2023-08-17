@@ -19,21 +19,21 @@ mixin _$MovieBookmarkEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieDetails) addToBookmarkEvent,
-    required TResult Function(dynamic dataBaseHelper) getBookmarkEvent,
+    required TResult Function() getBookmarkEvent,
     required TResult Function(dynamic movieId) deleteBookmarkEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult? Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult? Function()? getBookmarkEvent,
     TResult? Function(dynamic movieId)? deleteBookmarkEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult Function()? getBookmarkEvent,
     TResult Function(dynamic movieId)? deleteBookmarkEvent,
     required TResult orElse(),
   }) =>
@@ -146,7 +146,7 @@ class _$_AddToBookmarkEvent implements _AddToBookmarkEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieDetails) addToBookmarkEvent,
-    required TResult Function(dynamic dataBaseHelper) getBookmarkEvent,
+    required TResult Function() getBookmarkEvent,
     required TResult Function(dynamic movieId) deleteBookmarkEvent,
   }) {
     return addToBookmarkEvent(movieDetails);
@@ -156,7 +156,7 @@ class _$_AddToBookmarkEvent implements _AddToBookmarkEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult? Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult? Function()? getBookmarkEvent,
     TResult? Function(dynamic movieId)? deleteBookmarkEvent,
   }) {
     return addToBookmarkEvent?.call(movieDetails);
@@ -166,7 +166,7 @@ class _$_AddToBookmarkEvent implements _AddToBookmarkEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult Function()? getBookmarkEvent,
     TResult Function(dynamic movieId)? deleteBookmarkEvent,
     required TResult orElse(),
   }) {
@@ -226,8 +226,6 @@ abstract class _$$_GetBookmarkEventCopyWith<$Res> {
   factory _$$_GetBookmarkEventCopyWith(
           _$_GetBookmarkEvent value, $Res Function(_$_GetBookmarkEvent) then) =
       __$$_GetBookmarkEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({dynamic dataBaseHelper});
 }
 
 /// @nodoc
@@ -237,81 +235,57 @@ class __$$_GetBookmarkEventCopyWithImpl<$Res>
   __$$_GetBookmarkEventCopyWithImpl(
       _$_GetBookmarkEvent _value, $Res Function(_$_GetBookmarkEvent) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? dataBaseHelper = freezed,
-  }) {
-    return _then(_$_GetBookmarkEvent(
-      dataBaseHelper:
-          freezed == dataBaseHelper ? _value.dataBaseHelper! : dataBaseHelper,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_GetBookmarkEvent implements _GetBookmarkEvent {
-  const _$_GetBookmarkEvent({this.dataBaseHelper});
-
-  @override
-  final dynamic dataBaseHelper;
+  const _$_GetBookmarkEvent();
 
   @override
   String toString() {
-    return 'MovieBookmarkEvent.getBookmarkEvent(dataBaseHelper: $dataBaseHelper)';
+    return 'MovieBookmarkEvent.getBookmarkEvent()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GetBookmarkEvent &&
-            const DeepCollectionEquality()
-                .equals(other.dataBaseHelper, dataBaseHelper));
+        (other.runtimeType == runtimeType && other is _$_GetBookmarkEvent);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(dataBaseHelper));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_GetBookmarkEventCopyWith<_$_GetBookmarkEvent> get copyWith =>
-      __$$_GetBookmarkEventCopyWithImpl<_$_GetBookmarkEvent>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieDetails) addToBookmarkEvent,
-    required TResult Function(dynamic dataBaseHelper) getBookmarkEvent,
+    required TResult Function() getBookmarkEvent,
     required TResult Function(dynamic movieId) deleteBookmarkEvent,
   }) {
-    return getBookmarkEvent(dataBaseHelper);
+    return getBookmarkEvent();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult? Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult? Function()? getBookmarkEvent,
     TResult? Function(dynamic movieId)? deleteBookmarkEvent,
   }) {
-    return getBookmarkEvent?.call(dataBaseHelper);
+    return getBookmarkEvent?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult Function()? getBookmarkEvent,
     TResult Function(dynamic movieId)? deleteBookmarkEvent,
     required TResult orElse(),
   }) {
     if (getBookmarkEvent != null) {
-      return getBookmarkEvent(dataBaseHelper);
+      return getBookmarkEvent();
     }
     return orElse();
   }
@@ -352,13 +326,7 @@ class _$_GetBookmarkEvent implements _GetBookmarkEvent {
 }
 
 abstract class _GetBookmarkEvent implements MovieBookmarkEvent {
-  const factory _GetBookmarkEvent({final dynamic dataBaseHelper}) =
-      _$_GetBookmarkEvent;
-
-  dynamic get dataBaseHelper;
-  @JsonKey(ignore: true)
-  _$$_GetBookmarkEventCopyWith<_$_GetBookmarkEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _GetBookmarkEvent() = _$_GetBookmarkEvent;
 }
 
 /// @nodoc
@@ -425,7 +393,7 @@ class _$_DleteBookmarkEvent implements _DleteBookmarkEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic movieDetails) addToBookmarkEvent,
-    required TResult Function(dynamic dataBaseHelper) getBookmarkEvent,
+    required TResult Function() getBookmarkEvent,
     required TResult Function(dynamic movieId) deleteBookmarkEvent,
   }) {
     return deleteBookmarkEvent(movieId);
@@ -435,7 +403,7 @@ class _$_DleteBookmarkEvent implements _DleteBookmarkEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult? Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult? Function()? getBookmarkEvent,
     TResult? Function(dynamic movieId)? deleteBookmarkEvent,
   }) {
     return deleteBookmarkEvent?.call(movieId);
@@ -445,7 +413,7 @@ class _$_DleteBookmarkEvent implements _DleteBookmarkEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic movieDetails)? addToBookmarkEvent,
-    TResult Function(dynamic dataBaseHelper)? getBookmarkEvent,
+    TResult Function()? getBookmarkEvent,
     TResult Function(dynamic movieId)? deleteBookmarkEvent,
     required TResult orElse(),
   }) {

@@ -1,11 +1,11 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_bloc/core/usecases/usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/entities/get_bookmarks.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/delete_bookmark_usecase.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/domain/useCase/get_bookmarks_data_usecase.dart';
-import 'package:flutter_test_bloc/feature/movie_details/presentation/bloc/movie_details_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../movie_details/domain/useCase/is_bookmark.dart';
 import '../../domain/useCase/movie_add_to_bookmark_usecase.dart';
 
 part 'movie_bookmark_bloc.freezed.dart';

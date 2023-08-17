@@ -7,14 +7,12 @@ import '../../../movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
 import '../bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatelessWidget {
-  MovieDetailsPage({super.key});
+  const MovieDetailsPage({super.key});
 
-  final DataBaseHelper dataBaseHelper = locator<DataBaseHelper>();
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
 
   @override
   Widget build(BuildContext context) {
-    dataBaseHelper.init();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Movie Details"),
@@ -85,85 +83,99 @@ class MovieDetailsPage extends StatelessWidget {
                                                             .deleteBookmarkEvent(
                                                                 movieId: state
                                                                     .movieDetails!
-                                                                    .id),
-                                                      );
-                                                },
-                                                child:
-                                                    const Icon(Icons.bookmark)))
-                                        : GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<MovieBookmarkBloc>()
-                                                  .add(
-                                                    MovieBookmarkEvent
-                                                        .addToBookmarkEvent(
-                                                            movieDetails: state
-                                                                .movieDetails),
-                                                  );
-                                            },
-                                            child: const Icon(
-                                                Icons.bookmark_border_outlined),
-                                          ))
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  const TextSpan(
-                                      text: "Ratting: ",
-                                      style: TextStyle(color: Colors.black)),
-                                  const WidgetSpan(
-                                    child: Icon(Icons.star,
-                                        color: Colors.amber, size: 14),
-                                  ),
-                                  TextSpan(
-                                      text:
-                                          "${state.movieDetails!.voteAverage!} / ${state.movieDetails!.voteCount}",
-                                      style:
-                                          const TextStyle(color: Colors.black)),
+                                                                    .id));
+                                                    context
+                                                        .read<MovieDetailsBloc>()
+                                                        .add(MovieDetailsEvent
+                                                            .isMovieBookmark(
+                                                                movieId: state
+                                                                    .movieDetails!
+                                                                    .id));
+                                                  },
+                                                  child:
+                                                      const Icon(Icons.bookmark)))
+                                          : GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<MovieBookmarkBloc>()
+                                                    .add(
+                                                      MovieBookmarkEvent
+                                                          .addToBookmarkEvent(
+                                                              movieDetails: state
+                                                                  .movieDetails),
+                                                    );
+
+                                                context
+                                                    .read<MovieDetailsBloc>()
+                                                    .add(MovieDetailsEvent
+                                                        .isMovieBookmark(
+                                                            movieId: state
+                                                                .movieDetails!
+                                                                .id));
+                                              },
+                                              child: const Icon(
+                                                  Icons.bookmark_border_outlined),
+                                            ))
                                 ],
                               ),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  const TextSpan(
-                                      text: "Popularity: ",
-                                      style: TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text:
-                                          "${state.movieDetails!.popularity!}",
-                                      style:
-                                          const TextStyle(color: Colors.black)),
-                                ],
+                              const SizedBox(
+                                height: 15,
                               ),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              state.movieDetails!.overview!,
-                            ),
-                          ],
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                        text: "Ratting: ",
+                                        style: TextStyle(color: Colors.black)),
+                                    const WidgetSpan(
+                                      child: Icon(Icons.star,
+                                          color: Colors.amber, size: 14),
+                                    ),
+                                    TextSpan(
+                                        text:
+                                            "${state.movieDetails!.voteAverage!} / ${state.movieDetails!.voteCount}",
+                                        style:
+                                            const TextStyle(color: Colors.black)),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                        text: "Popularity: ",
+                                        style: TextStyle(color: Colors.black)),
+                                    TextSpan(
+                                        text:
+                                            "${state.movieDetails!.popularity!}",
+                                        style:
+                                            const TextStyle(color: Colors.black)),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                state.movieDetails!.overview!,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                );
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+            },
+          ),
         ),
-      ),
-    );
+      );
   }
 }

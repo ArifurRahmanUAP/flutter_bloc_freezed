@@ -30,8 +30,7 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) {
                   return BlocProvider(
                     create: (context) => locator<MovieBookmarkBloc>()
-                      ..add(MovieBookmarkEvent.getBookmarkEvent(
-                          dataBaseHelper: dataBaseHelper)),
+                      ..add(const MovieBookmarkEvent.getBookmarkEvent()),
                     child: const BookmarkPage(),
                   );
                 }),
@@ -60,9 +59,9 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var data = state.nowShowingMovies?.results![index];
                         return Container(
-                          margin: const EdgeInsets.only(right: 3, left: 3),
                           decoration: BoxDecoration(
-                            border: Border.all(width: 1),
+                            border:
+                                Border.all(width: 2, color: Colors.transparent),
                             color: Colors.transparent,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(5),
@@ -74,17 +73,18 @@ class HomePage extends StatelessWidget {
                                 child: SizedBox(
                                   height: 200,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderRadius: BorderRadius.circular(5.0),
                                     child: FadeInImage.assetNetwork(
                                       placeholder: 'assets/gif/loading.gif',
                                       image: imageBaseUrl + data!.posterPath!,
-                                      width: 140,
                                       height: 160,
                                     ),
                                   ),
                                 ),
                               ),
-                              Text(data.originalTitle!),
+                              Text(
+                                data.originalTitle!,
+                              ),
                             ],
                           ),
                         );
@@ -137,11 +137,15 @@ class HomePage extends StatelessWidget {
                                 child: Container(
                                   margin: const EdgeInsets.all(5),
                                   decoration: BoxDecoration(
-                                      border: Border.all(width: 2),
+                                      border: Border.all(
+                                          width: 2, color: Colors.transparent),
                                       borderRadius: BorderRadius.circular(5)),
-                                  child: Image.network(
-                                    imageBaseUrl + data.posterPath!,
-                                    fit: BoxFit.cover,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder: 'assets/gif/loading.gif',
+                                      image: imageBaseUrl + data.posterPath!,
+                                    ),
                                   ),
                                 ),
                               ),

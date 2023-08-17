@@ -76,6 +76,7 @@ flutter:
   assets:
     - assets/
     - assets/gif/loading.gif
+    - assets/image/nodata.png
 
   #   - images/a_dot_ham.jpeg
 
