@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return const BookmarkPage();
+                  return BookmarkPage();
                 }),
               );
             },

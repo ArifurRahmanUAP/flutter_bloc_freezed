@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_bloc/feature/movie_bookmarks/presentation/bloc/movie_bookmark_bloc.dart';
 
 import '../../../../injection.dart';
-import '../../../movie_details/presentation/bloc/movie_details_bloc.dart';
 import '../../../movie_details/presentation/ui/movie_details_page.dart';
 
 class BookmarkPage extends StatelessWidget {
-  const BookmarkPage({super.key});
+   const BookmarkPage({super.key});
 
   final imageBaseUrl = 'https://image.tmdb.org/t/p/w500/';
 
@@ -32,15 +31,18 @@ class BookmarkPage extends StatelessWidget {
                   itemCount: state.bookmarksData!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return  MovieDetailsPage(movieId: state
-                                .bookmarksData![index]
-                                .movieId as num);
-                          }),
-                        );
+                      onTap: () async {
+                       Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => MovieDetailsPage(
+                                    movieId: state.bookmarksData![index].movieId
+                                        as num))).then((value) {
+                        if(value){
+                          context.read<MovieBookmarkBloc>().add(const MovieBookmarkEvent.getBookmarkEvent());
+                        }
+                      });
+
                       },
                       child: Row(
                         children: [
