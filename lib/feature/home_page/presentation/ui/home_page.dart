@@ -28,11 +28,7 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return BlocProvider(
-                    create: (context) => locator<MovieBookmarkBloc>()
-                      ..add(const MovieBookmarkEvent.getBookmarkEvent()),
-                    child: const BookmarkPage(),
-                  );
+                  return const BookmarkPage();
                 }),
               );
             },
@@ -112,21 +108,7 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider(
-                                        create: (context) =>
-                                            locator<MovieDetailsBloc>()
-                                              ..add(MovieDetailsEvent
-                                                  .getMovieDetails(
-                                                      movieId: data.id))),
-                                    BlocProvider(
-                                      create: (context) =>
-                                          locator<MovieBookmarkBloc>(),
-                                    )
-                                  ],
-                                  child: MovieDetailsPage(),
-                                );
+                                return MovieDetailsPage(movieId: data.id!);
                               }),
                             );
                           },
