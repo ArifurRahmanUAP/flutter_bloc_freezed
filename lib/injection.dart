@@ -23,7 +23,6 @@ import 'feature/movie_details/domain/repositories/movie_details_repositories.dar
 import 'feature/movie_details/presentation/bloc/movie_details_bloc.dart';
 
 final locator = GetIt.instance;
-final dataBaseHelper = DataBaseHelper();
 
 void init() {
   /// Bloc
@@ -88,6 +87,5 @@ void init() {
   /// Core
   /// Externals
   locator.registerLazySingleton(() => Dio());
-  locator.registerLazySingleton(() => dataBaseHelper);
-  locator.registerLazySingleton(() => dataBaseHelper.init());
+  locator.registerLazySingleton(() => DataBaseHelper());
 }

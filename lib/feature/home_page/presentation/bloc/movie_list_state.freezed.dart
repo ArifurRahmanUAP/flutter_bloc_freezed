@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MovieListState {
   PopularMovies? get popularMovies => throw _privateConstructorUsedError;
   PopularMovies? get nowShowingMovies => throw _privateConstructorUsedError;
+  List<Results>? get nowShowingMovieList => throw _privateConstructorUsedError;
+  List<Results>? get popularMovieList => throw _privateConstructorUsedError;
   bool? get isLoading => throw _privateConstructorUsedError;
   bool? get isLoadingMore => throw _privateConstructorUsedError;
   bool? get isFailure => throw _privateConstructorUsedError;
@@ -37,6 +39,8 @@ abstract class $MovieListStateCopyWith<$Res> {
   $Res call(
       {PopularMovies? popularMovies,
       PopularMovies? nowShowingMovies,
+      List<Results>? nowShowingMovieList,
+      List<Results>? popularMovieList,
       bool? isLoading,
       bool? isLoadingMore,
       bool? isFailure,
@@ -58,6 +62,8 @@ class _$MovieListStateCopyWithImpl<$Res, $Val extends MovieListState>
   $Res call({
     Object? popularMovies = freezed,
     Object? nowShowingMovies = freezed,
+    Object? nowShowingMovieList = freezed,
+    Object? popularMovieList = freezed,
     Object? isLoading = freezed,
     Object? isLoadingMore = freezed,
     Object? isFailure = freezed,
@@ -72,6 +78,14 @@ class _$MovieListStateCopyWithImpl<$Res, $Val extends MovieListState>
           ? _value.nowShowingMovies
           : nowShowingMovies // ignore: cast_nullable_to_non_nullable
               as PopularMovies?,
+      nowShowingMovieList: freezed == nowShowingMovieList
+          ? _value.nowShowingMovieList
+          : nowShowingMovieList // ignore: cast_nullable_to_non_nullable
+              as List<Results>?,
+      popularMovieList: freezed == popularMovieList
+          ? _value.popularMovieList
+          : popularMovieList // ignore: cast_nullable_to_non_nullable
+              as List<Results>?,
       isLoading: freezed == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -103,6 +117,8 @@ abstract class _$$_MovieListStateCopyWith<$Res>
   $Res call(
       {PopularMovies? popularMovies,
       PopularMovies? nowShowingMovies,
+      List<Results>? nowShowingMovieList,
+      List<Results>? popularMovieList,
       bool? isLoading,
       bool? isLoadingMore,
       bool? isFailure,
@@ -122,6 +138,8 @@ class __$$_MovieListStateCopyWithImpl<$Res>
   $Res call({
     Object? popularMovies = freezed,
     Object? nowShowingMovies = freezed,
+    Object? nowShowingMovieList = freezed,
+    Object? popularMovieList = freezed,
     Object? isLoading = freezed,
     Object? isLoadingMore = freezed,
     Object? isFailure = freezed,
@@ -136,6 +154,14 @@ class __$$_MovieListStateCopyWithImpl<$Res>
           ? _value.nowShowingMovies
           : nowShowingMovies // ignore: cast_nullable_to_non_nullable
               as PopularMovies?,
+      nowShowingMovieList: freezed == nowShowingMovieList
+          ? _value._nowShowingMovieList
+          : nowShowingMovieList // ignore: cast_nullable_to_non_nullable
+              as List<Results>?,
+      popularMovieList: freezed == popularMovieList
+          ? _value._popularMovieList
+          : popularMovieList // ignore: cast_nullable_to_non_nullable
+              as List<Results>?,
       isLoading: freezed == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -162,15 +188,41 @@ class _$_MovieListState implements _MovieListState {
   _$_MovieListState(
       {this.popularMovies,
       this.nowShowingMovies,
+      final List<Results>? nowShowingMovieList,
+      final List<Results>? popularMovieList,
       this.isLoading,
       this.isLoadingMore,
       this.isFailure,
-      this.failureMessage});
+      this.failureMessage})
+      : _nowShowingMovieList = nowShowingMovieList,
+        _popularMovieList = popularMovieList;
 
   @override
   final PopularMovies? popularMovies;
   @override
   final PopularMovies? nowShowingMovies;
+  final List<Results>? _nowShowingMovieList;
+  @override
+  List<Results>? get nowShowingMovieList {
+    final value = _nowShowingMovieList;
+    if (value == null) return null;
+    if (_nowShowingMovieList is EqualUnmodifiableListView)
+      return _nowShowingMovieList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Results>? _popularMovieList;
+  @override
+  List<Results>? get popularMovieList {
+    final value = _popularMovieList;
+    if (value == null) return null;
+    if (_popularMovieList is EqualUnmodifiableListView)
+      return _popularMovieList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final bool? isLoading;
   @override
@@ -182,7 +234,7 @@ class _$_MovieListState implements _MovieListState {
 
   @override
   String toString() {
-    return 'MovieListState(popularMovies: $popularMovies, nowShowingMovies: $nowShowingMovies, isLoading: $isLoading, isLoadingMore: $isLoadingMore, isFailure: $isFailure, failureMessage: $failureMessage)';
+    return 'MovieListState(popularMovies: $popularMovies, nowShowingMovies: $nowShowingMovies, nowShowingMovieList: $nowShowingMovieList, popularMovieList: $popularMovieList, isLoading: $isLoading, isLoadingMore: $isLoadingMore, isFailure: $isFailure, failureMessage: $failureMessage)';
   }
 
   @override
@@ -194,6 +246,10 @@ class _$_MovieListState implements _MovieListState {
                 other.popularMovies == popularMovies) &&
             (identical(other.nowShowingMovies, nowShowingMovies) ||
                 other.nowShowingMovies == nowShowingMovies) &&
+            const DeepCollectionEquality()
+                .equals(other._nowShowingMovieList, _nowShowingMovieList) &&
+            const DeepCollectionEquality()
+                .equals(other._popularMovieList, _popularMovieList) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isLoadingMore, isLoadingMore) ||
@@ -205,8 +261,16 @@ class _$_MovieListState implements _MovieListState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, popularMovies, nowShowingMovies,
-      isLoading, isLoadingMore, isFailure, failureMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      popularMovies,
+      nowShowingMovies,
+      const DeepCollectionEquality().hash(_nowShowingMovieList),
+      const DeepCollectionEquality().hash(_popularMovieList),
+      isLoading,
+      isLoadingMore,
+      isFailure,
+      failureMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -219,6 +283,8 @@ abstract class _MovieListState implements MovieListState {
   factory _MovieListState(
       {final PopularMovies? popularMovies,
       final PopularMovies? nowShowingMovies,
+      final List<Results>? nowShowingMovieList,
+      final List<Results>? popularMovieList,
       final bool? isLoading,
       final bool? isLoadingMore,
       final bool? isFailure,
@@ -228,6 +294,10 @@ abstract class _MovieListState implements MovieListState {
   PopularMovies? get popularMovies;
   @override
   PopularMovies? get nowShowingMovies;
+  @override
+  List<Results>? get nowShowingMovieList;
+  @override
+  List<Results>? get popularMovieList;
   @override
   bool? get isLoading;
   @override

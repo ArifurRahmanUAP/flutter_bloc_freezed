@@ -5,13 +5,13 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/popular_movie.dart';
 import '../repositories/movie_repository.dart';
 
-class GetNowShowingMoviesUseCase implements UseCase<PopularMovies, NoParams>{
+class GetNowShowingMoviesUseCase implements UseCase<PopularMovies, int>{
   final MovieListRepository repository;
   GetNowShowingMoviesUseCase({required this.repository});
 
   @override
-  Future<Either<Failures, PopularMovies>?> call(NoParams params) {
-    return repository.getNowShowingMovies();
+  Future<Either<Failures, PopularMovies>?> call(pageNo) {
+    return repository.getNowShowingMovies(pageNo: pageNo);
   }
 
 

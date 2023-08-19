@@ -27,7 +27,9 @@ class MovieDetailsPage extends StatelessWidget {
             providers: [
               BlocProvider(
                 create: (context) => locator<MovieDetailsBloc>()
-                  ..add(MovieDetailsEvent.getMovieDetails(movieId: movieId)),
+                  ..add(
+                    MovieDetailsEvent.getMovieDetails(movieId: movieId),
+                  ),
               ),
               BlocProvider(
                 create: (context) => locator<MovieBookmarkBloc>(),

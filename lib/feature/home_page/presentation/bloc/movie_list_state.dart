@@ -7,6 +7,8 @@ class MovieListState with _$MovieListState {
   factory MovieListState({
     PopularMovies? popularMovies,
     PopularMovies? nowShowingMovies,
+    List<Results>? nowShowingMovieList,
+    List<Results>? popularMovieList,
     bool? isLoading,
     bool? isLoadingMore,
     bool? isFailure,
@@ -18,6 +20,8 @@ class MovieListState with _$MovieListState {
       nowShowingMovies: null,
       isLoading: false,
       isFailure: false,
+      nowShowingMovieList: [],
+      popularMovieList: [],
       isLoadingMore: false,
       failureMessage: null);
 }

@@ -1,15 +1,15 @@
 import 'package:flutter_test_bloc/feature/home_page/domain/entities/popular_movie.dart';
 
 //ignore: must_be_immutable
-class PopularMovieModel extends PopularMovies {
-  PopularMovieModel({
+class MovieListModel extends PopularMovies {
+  MovieListModel({
     this.page,
     this.results,
     this.totalPages,
     this.totalResults,
   });
 
-  PopularMovieModel.fromJson(dynamic json) {
+  MovieListModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
@@ -30,8 +30,8 @@ class PopularMovieModel extends PopularMovies {
   @override
   num? totalResults;
 
-  factory PopularMovieModel.fromObject({required PopularMovies popularMovie}) =>
-      PopularMovieModel(
+  factory MovieListModel.fromObject({required PopularMovies popularMovie}) =>
+      MovieListModel(
         page: popularMovie.page,
         results: popularMovie.results,
         totalPages: popularMovie.totalPages,

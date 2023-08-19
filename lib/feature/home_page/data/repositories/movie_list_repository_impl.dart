@@ -10,16 +10,16 @@ class MovieListRepositoriesImpl implements MovieListRepository{
 
 
   @override
-  Future<Either<Failures, PopularMovies>> getPopularMovies() async {
+  Future<Either<Failures, PopularMovies>> getPopularMovies({required int pageNo}) async {
     return await BodyCall<PopularMovies>()(
-    () => movieListRemoteDataSource.getPopularMovies(),
+    () => movieListRemoteDataSource.getPopularMovies(pageNo: pageNo),
     );
   }
 
   @override
-  Future<Either<Failures, PopularMovies>> getNowShowingMovies() async {
+  Future<Either<Failures, PopularMovies>> getNowShowingMovies({required int pageNo}) async {
     return await BodyCall<PopularMovies>()(
-          () => movieListRemoteDataSource.getNowShowingMovies(),
+          () => movieListRemoteDataSource.getNowShowingMovies(pageNo: pageNo),
     );
   }
 

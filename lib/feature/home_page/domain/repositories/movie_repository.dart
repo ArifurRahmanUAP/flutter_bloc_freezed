@@ -4,6 +4,6 @@ import 'package:flutter_test_bloc/feature/home_page/domain/entities/popular_movi
 
 abstract class MovieListRepository{
 
-  Future<Either<Failures, PopularMovies>> getPopularMovies();
-  Future<Either<Failures, PopularMovies>> getNowShowingMovies();
+  Future<Either<Failures, PopularMovies>> getPopularMovies({required int pageNo});
+  Future<Either<Failures, PopularMovies>> getNowShowingMovies({required int pageNo});
 }
