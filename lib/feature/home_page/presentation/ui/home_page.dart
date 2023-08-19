@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
                 builder: (context, state) {
                   if (state.nowShowingMovies != null) {
                     return PagedListView<Results>(
+                      scrollDiraction: Axis.horizontal,
                       isLoading: state.isLoading!,
                       currentPage:
                       int.parse(state.nowShowingMovies!.page.toString()),
@@ -128,6 +129,7 @@ class HomePage extends StatelessWidget {
                         ));
                       },
                       child: PagedListView<Results>(
+                        scrollDiraction: Axis.vertical,
                         isLoading: state.isLoading!,
                         currentPage:
                         int.parse(state.popularMovies!.page.toString()),

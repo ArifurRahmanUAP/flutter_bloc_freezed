@@ -13,6 +13,7 @@ class PagedListView<T> extends StatelessWidget {
   final int totalSize;
   final int itemPerPage;
   final int currentPage;
+  final Axis scrollDiraction;
 
   PagedListView({
     super.key,
@@ -24,6 +25,7 @@ class PagedListView<T> extends StatelessWidget {
     required this.totalSize,
     required this.itemPerPage,
     required this.currentPage,
+    required this.scrollDiraction,
   });
 
   @override
@@ -34,7 +36,7 @@ class PagedListView<T> extends StatelessWidget {
       // so we stop it by return
       // also if total page is 1 or total size is less equal item per page
       // so we don't need to call newLoad any more
-      if (isLoading || totalPage == 1 ) return;
+      if (isLoading || totalPage == 1) return;
 
       if (_scrollController.position.atEdge &&
           _scrollController.position.pixels > 0) {
@@ -55,6 +57,7 @@ class PagedListView<T> extends StatelessWidget {
           Flexible(
             flex: 1,
             child: ListView.builder(
+              scrollDirection: scrollDiraction,
               physics: const AlwaysScrollableScrollPhysics(),
               controller: _scrollController,
               itemCount: items.isEmpty ? 0 : items.length,
